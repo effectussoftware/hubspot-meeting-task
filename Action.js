@@ -16,6 +16,7 @@ const ActionSchema = new Schema({
     type: Number,
     default: 0
   },
+  identity: String,
   meetingProperties: {
     meeting_id: String,
     meeting_title: String,
@@ -24,7 +25,20 @@ const ActionSchema = new Schema({
     meeting_created_date: Date,
     meeting_updated_date: Date,
     contact: String
+  },
+  userProperties: {
+    company_id: String,
+    contact_name: String,
+    contact_title: String,
+    contact_source: String,
+    contact_status: String,
+    contact_score: Number
+  },
+  companyProperties: {
+    company_id: String,
+    company_domain: String,
+    company_industry: String
   }
-}, { minimize: false });
+});
 
 module.exports = mongoose.model('Action', ActionSchema);
