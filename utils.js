@@ -1,3 +1,5 @@
+const Action = require('./Action');
+
 const disallowedValues = [
   '[not provided]',
   'placeholder',
@@ -22,9 +24,13 @@ const filterNullValuesFromObject = object =>
 
 const normalizePropertyName = key => key.toLowerCase().replace(/__c$/, '').replace(/^_+|_+$/g, '').replace(/_+/g, '_');
 
-const goal = actions => {
-  // this is where the data will be written to the database
-  console.log(actions);
+const goal = async (actions) => {
+  try {
+    await Action.insertMany(actions);
+    console.log('actions saved');
+  } catch (err) {
+    console.error('Failed to save actions:', err);
+  }
 };
 
 module.exports = {
